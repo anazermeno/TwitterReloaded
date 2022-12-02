@@ -44,13 +44,16 @@ def menu_op_in_range(op, range):
     """Checks if user's choise is in given menu range
 
     Args:
-        op (int): User's menu choise
+        op (str): User's menu choise
         range (list<int>): Range of menu
 
     Returns:
         bool: True if choise in range, False if not
-    """    
-    if op in range:
+    """
+    if not op.isnumeric():
+        return False
+    
+    if int(op) in range:
         return True
     else:
         return False

@@ -102,7 +102,7 @@ def login():
                     op = input()
                     
                     while True:
-                        if menu_op_in_range(int(op), [1, 2]):
+                        if menu_op_in_range(op, [1, 2]):
                             break
                         else:
                             clear_screen()
@@ -136,7 +136,7 @@ def login():
         op = input()
         
         while True:
-            if menu_op_in_range(int(op), [1, 2]):
+            if menu_op_in_range(op, [1, 2]):
                 break
             else:
                 clear_screen()
@@ -231,7 +231,7 @@ def daily_stats_screen():
         op = input()
         
         while True:
-            if menu_op_in_range(int(op), [1, 2, 3, 4]):
+            if menu_op_in_range(op, [1, 2, 3, 4]):
                 break
             else:
                 clear_screen()
@@ -270,7 +270,7 @@ def login_screen():
     op = input()
     
     while True:
-        if menu_op_in_range(int(op), [1, 2, 3]):
+        if menu_op_in_range(op, [1, 2, 3]):
             break
         else:
             clear_screen()
@@ -414,7 +414,7 @@ def show_thread(tweet_info, userID):
     op = input()
     
     while True:
-        if menu_op_in_range(int(op), [1, 2]):
+        if menu_op_in_range(op, [1, 2]):
             break
         else:
             clear_screen()
@@ -471,7 +471,7 @@ def show_tweets(userID):
     op = input()
     
     while True:
-        if menu_op_in_range(int(op), list(range(1, len(aux_db) + 1)) + [0]):
+        if menu_op_in_range(op, list(range(1, len(aux_db) + 1)) + [0]):
             break
         else:
             clear_screen()
@@ -507,7 +507,7 @@ def dashboard(userID):
         op = input()
         
         while True:
-            if menu_op_in_range(int(op), [1, 2, 3]):
+            if menu_op_in_range(op, [1, 2, 3]):
                 break
             else:
                 clear_screen()
