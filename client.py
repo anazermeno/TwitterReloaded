@@ -83,7 +83,7 @@ def login():
                 print("Password: " + Style.RESET_ALL)
                 user_input = input()
                 
-                if user_input in aux_db: #TODO Se puede cambiar a la funcion, pero son mas acciones a la base de datos
+                if user_input in aux_db:
                     return True, userID
                 
                 if attempts == 1:
