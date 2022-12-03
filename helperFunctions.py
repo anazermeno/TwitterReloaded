@@ -95,3 +95,50 @@ def database_constructor():
         cur.execute("CREATE TABLE IF NOT EXISTS reply(tweetID INTEGER NOT NULL, userID INTEGER NOT NULL, reply TEXT NOT NULL, date TIMESTAMP NOT NULL, FOREIGN KEY (tweetID) REFERENCES tweet (tweetID), FOREIGN KEY (userID) REFERENCES user (userID))")
 
         con.commit()
+
+####################
+# LOGIN FUNCTIONS  #
+####################
+
+def lookup_by_username(user_input):
+    """Looks up given username in database
+
+    Args:
+        user_input (str): Username that will be looked up in database
+
+    Returns:
+        bool, tuple<int, str>: Bool : If username is in the database, tuple : (userID, username)
+    """    
+    res = cur.execute("""
+                      SELECT userID, username FROM user
+                      WHERE username = ?
+                      """, (user_input,))
+    # aux_db = (userID, username)
+    aux_db = res.fetchone()
+    con.commit()
+    
+    if aux_db != None:
+        return True, aux_db
+    else:
+        return False, aux_db
+    
+def password_match(user_input, username):
+    """Checks if password given matches the one on the database
+
+    Args:
+        user_input (str): Password that will be matched with one in the database
+        username (str): Username of the user trying to log in
+
+    Returns:
+        bool, tuple<str>: bool: if passwords matched, tuple : password from the database
+    """    
+    res = cur.execute("""
+                        SELECT password FROM user
+                        WHERE username = ?
+                        """, (username,))
+    aux_db = res.fetchone()
+    con.commit()
+    if user_input == aux_db[0]:
+        return True, aux_db
+    else:
+        return False, aux_db

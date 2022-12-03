@@ -50,47 +50,38 @@ def login():
     user_input = input()
 
     # Check if username is in database
-    res = cur.execute("""
-                      SELECT userID, username FROM user
-                      WHERE username = ?
-                      """, (user_input,))
-    aux_db = res.fetchall()
-    con.commit()
+    # aux_db = (userID, username)
+    username_in_database, aux_db = lookup_by_username(user_input)
     
     # If aux_db has a length of 0, username was not found
-    if len(aux_db) != 0:
+    if username_in_database:
 
         # Save username for next querie
-        userID, username = aux_db[0]
+        userID, username = aux_db
         print(Fore.LIGHTGREEN_EX, end="")
         print("Password: " + Style.RESET_ALL)
         user_input = input()
 
         # Get the password for username
-        res = cur.execute("""
-                            SELECT password FROM user
-                            WHERE username = ?
-                            """, (username,))
-        aux_db = res.fetchone()
-        con.commit
+        # aux_db = (password)
+        match_result, aux_db = password_match(user_input, username)
 
         # Check if password matches
         # Gives the user 5 chances to get the password right
         # If not user is asked if he wants to return to login menu or change password
-        if user_input in aux_db:
+        if match_result:
             return True, userID
         else:
             attempts = 5
-            password_match = False
             
-            while not password_match:
+            while True:
                 print(Fore.LIGHTRED_EX, end="")
                 print("Password does not match, try again" + Style.RESET_ALL)
                 print(Fore.LIGHTGREEN_EX, end="")
                 print("Password: " + Style.RESET_ALL)
                 user_input = input()
                 
-                if user_input in aux_db:
+                if user_input in aux_db: #TODO Se puede cambiar a la funcion, pero son mas acciones a la base de datos
                     return True, userID
                 
                 if attempts == 1:
@@ -117,7 +108,7 @@ def login():
                         change_password(username)
                         clear_screen()
                         return True, userID
-                    else:
+                    elif op == '2':
                         clear_screen()
                         return False, ""
                     
@@ -266,18 +257,18 @@ def login_screen():
     print(Fore.LIGHTBLUE_EX, end="")
     print("---Twitter Reloaded---" + Style.RESET_ALL)
     print(Fore.LIGHTGREEN_EX, end="")
-    print("(1)LOGIN     (2)REGISTER     (3)Daily Stats" + Style.RESET_ALL)
+    print("(1)LOGIN     (2)REGISTER     (3)Daily Stats      (4)EXIT" + Style.RESET_ALL)
     op = input()
     
     while True:
-        if menu_op_in_range(op, [1, 2, 3]):
+        if menu_op_in_range(op, [1, 2, 3, 4]):
             break
         else:
             clear_screen()
             print(Fore.LIGHTRED_EX, end="")
             print("Invalid menu option! Try again"  + Style.RESET_ALL)
             print(Fore.LIGHTGREEN_EX, end="")
-            print("(1)LOGIN     (2)REGISTER     (3)Daily Stats" + Style.RESET_ALL)
+            print("(1)LOGIN     (2)REGISTER     (3)Daily Stats      (4)EXIT" + Style.RESET_ALL)
             op = input()
     
     if op == '1':
@@ -292,6 +283,9 @@ def login_screen():
         clear_screen()
         daily_stats_screen()
         main()
+    elif op == '4':
+        clear_screen()
+        exit()
 
 
 def new_tweet(userID):
@@ -526,6 +520,7 @@ def dashboard(userID):
             show_tweets(userID)
             
     clear_screen()
+    exit()
 
 
 def main():
