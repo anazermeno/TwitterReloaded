@@ -1,3 +1,5 @@
+# Team 1 - Final Project
+
 import sqlite3 as sq
 import datetime
 from colorama import Fore, Style
