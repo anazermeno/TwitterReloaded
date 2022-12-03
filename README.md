@@ -1,11 +1,11 @@
 # TwitterReloaded
 
-## TwitterReloaded
+## ##TwitterReloaded
 
 Twitter is a service that allows groups of friends, family and co-workers to communicate and stay in touch through quick and frequent messages.
 People post Tweets, which can contain photos, videos, links, and text.
 
-## HowDoesThisWorks
+## ##HowDoesThisWorks
 
 ### How to run
 
