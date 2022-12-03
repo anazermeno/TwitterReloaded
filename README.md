@@ -1,6 +1,5 @@
 # TwitterReloaded
 
-
 ## TwitterReloaded
 
 Twitter is a service that allows groups of friends, family and co-workers to communicate and stay in touch through quick and frequent messages.
@@ -8,8 +7,14 @@ People post Tweets, which can contain photos, videos, links, and text.
 
 ## HowDoesThisWorks
 
-The useropenas the application, pushes the bottom of LOGIN and enters user and password, once the
-information is confirmed, the "Home Dashboard" opens, with the possibility of: View Tweets, Click on Tweets, Publish a Tweet, and Reply a Tweet.
+### How to run
+
+```
+python3 client.py
+
+```
+
+The useropenas the application, pushes the bottom of LOGIN and enters user and password, once the information is confirmed, the "Home Dashboard" opens, with the possibility of: View Tweets, Click on Tweets, Publish a Tweet, and Reply a Tweet.
 
 # SOLID Practices
 1. __Open Closed Principle__: System task are distributed in different functions, as can be seen in each of the report generators, all tasks have been split into their own function block.
