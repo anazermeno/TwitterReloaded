@@ -520,9 +520,9 @@ def dashboard(userID):
         elif op == '2':
             clear_screen()
             show_tweets(userID)
-            
-    clear_screen()
-    exit()
+        elif op == '3':
+            clear_screen()
+            exit()
 
 
 def main():
